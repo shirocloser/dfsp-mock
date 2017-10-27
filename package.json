@@ -1,0 +1,61 @@
+{
+  "name": "@leveloneproject/dfsp-mock",
+  "version": "1.0.0-quotes.25",
+  "description": "DFPS mock",
+  "main": "index.js",
+  "scripts": {
+    "changelog": "ut-changelog",
+    "check": "ut-check",
+    "circleci:build": "ut-circleci-build",
+    "circleci:cover": "ut-circleci-cover",
+    "circleci:tag": "ut-circleci-tag",
+    "circleci:push": "ut-circleci-push",
+    "circleci:test": "ut-circleci-test",
+    "cover": "ut-cover",
+    "gitlab": "ut-gitlab",
+    "jenkins": "ut-jenkins",
+    "lint": "ut-lint .",
+    "lint-js": "ut-lint-js .",
+    "pm2": "pm2 start pm2.json",
+    "pm2-show": "pm2 show",
+    "pm2-stop": "pm2 stop pm2.json",
+    "postpublish": "ut-postpublish",
+    "postversion": "ut-postversion",
+    "precommit": "ut-precommit",
+    "prepublish": "ut-prepublish",
+    "prepush": "ut-prepush",
+    "pretest": "ut-pretest",
+    "preversion": "ut-preversion",
+    "release": "ut-release",
+    "start": "node .",
+    "test": "ut-test",
+    "version": "ut-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:LevelOneProject/dfsp-mock.git"
+  },
+  "engines": {
+    "node": ">=4.4.7",
+    "npm": ">=3.10.6"
+  },
+  "publishConfig": {
+    "registry": "https://modusbox.jfrog.io/modusbox/api/npm/level1-npm-release"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "hapi": "^15.1.1",
+    "ilp": "11.2.0",
+    "ilp-packet": "^1.2.0",
+    "joi": "^9.1.1",
+    "lodash": "^4.17.4",
+    "rc": "^1.2.1",
+    "request": "^2.79.0",
+    "uuid4": "^1.0.0"
+  },
+  "devDependencies": {
+    "ut-tools": "^5.17.16",
+    "tap-xunit": "1.4.0"
+  }
+}

@@ -1,0 +1,25 @@
+machine:
+  services:
+    - docker
+  node:
+    version: 6.1.0
+  environment:
+    UT_ENV: circleci
+
+dependencies:
+  pre:
+    - curl -u$NPM_USER:$NPM_PASSWORD "https://modusbox.jfrog.io/modusbox/api/npm/level1-npm-release/auth/leveloneproject" >>.npmrc
+
+test:
+  override:
+    - git branch -u origin/$CIRCLE_BRANCH
+    - npm run circleci:test
+    - npm shrinkwrap
+
+deployment:
+  prod:
+    branch: /^(master|(hotfix|major|minor|patch)\/[^/]+)$/
+    commands:
+      - npm run circleci:build
+      - npm run circleci:cover
+      - npm run circleci:tag
