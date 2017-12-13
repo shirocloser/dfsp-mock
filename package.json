@@ -1,6 +1,6 @@
 {
   "name": "@mojaloop/dfsp-mock",
-  "version": "1.0.0-quotes.25",
+  "version": "1.0.0",
   "description": "DFPS mock",
   "main": "index.js",
   "scripts": {
@@ -38,9 +38,6 @@
   "engines": {
     "node": ">=4.4.7",
     "npm": ">=3.10.6"
-  },
-  "publishConfig": {
-    "registry": "https://modusbox.jfrog.io/modusbox/api/npm/level1-npm-release"
   },
   "author": "",
   "license": "Apache-2.0",
