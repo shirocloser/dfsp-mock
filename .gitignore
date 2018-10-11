@@ -9,5 +9,5 @@ cache
 dist
 tmp
 .npmrc
-
+package-lock.json
 dev

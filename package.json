@@ -42,8 +42,8 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "hapi": "^15.1.1",
-    "ilp": "11.2.0",
+    "hapi": "^16",
+    "ilp": "^12.0.1",
     "ilp-packet": "^1.2.0",
     "joi": "^9.1.1",
     "lodash": "^4.17.4",
@@ -52,7 +52,7 @@
     "uuid4": "^1.0.0"
   },
   "devDependencies": {
-    "ut-tools": "^5.17.16",
-    "tap-xunit": "1.4.0"
+    "tap-xunit": "1.4.0",
+    "ut-tools": "^6.0.2"
   }
 }
