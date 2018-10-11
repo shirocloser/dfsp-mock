@@ -44,9 +44,14 @@ server.route([
         method: 'GET',
         json: true,
         headers: {
-          Authorization: 'Basic ' + new Buffer(config.cluster + ':' + config.cluster).toString('base64')
+          Authorization: 'Basic ' + Buffer.from(config.cluster + ':' + config.cluster).toString('base64')
         }
       }, function (error, message, response) {
+        if (error) {
+          return reply({
+            'message': error
+          }).code(400)
+        }
         return reply({
           dfsp_details: message.body,
           fraud_details: {
@@ -166,7 +171,7 @@ server.route([
         method: 'GET',
         json: true,
         headers: {
-          Authorization: 'Basic ' + new Buffer(config.cluster + ':' + config.cluster).toString('base64')
+          Authorization: 'Basic ' + Buffer.from(config.cluster + ':' + config.cluster).toString('base64')
         }
       }, function (error, message, response) {
         if (message.statusCode >= 400) {
@@ -197,7 +202,7 @@ server.route([
         method: 'GET',
         json: true,
         headers: {
-          Authorization: 'Basic ' + new Buffer(config.cluster + ':' + config.cluster).toString('base64')
+          Authorization: 'Basic ' + Buffer.from(config.cluster + ':' + config.cluster).toString('base64')
         }
       }, function (error, message, response) {
         if (message.statusCode >= 400) {
@@ -299,7 +304,7 @@ server.route([
         method: 'GET',
         json: true,
         headers: {
-          Authorization: 'Basic ' + new Buffer(config.cluster + ':' + config.cluster).toString('base64')
+          Authorization: 'Basic ' + Buffer.from(config.cluster + ':' + config.cluster).toString('base64')
         }
       }, function (error, message, response) {
         if (message.statusCode >= 400) {
@@ -370,9 +375,14 @@ server.route([
               status: 'prepared'
             },
             headers: {
-              Authorization: 'Basic ' + new Buffer(config.cluster + ':' + config.cluster).toString('base64')
+              Authorization: 'Basic ' + Buffer.from(config.cluster + ':' + config.cluster).toString('base64')
             }
           }, function (error, message, response) {
+            if (error) {
+              return reply({
+                'message': error
+              }).code(400)
+            }
             request({
               url: 'http://localhost:8014/ledger/transfers/' + ipr.publicHeaders['payment-id'] + '/fulfillment',
               method: 'PUT',
@@ -420,7 +430,7 @@ server.route([
         url: 'http://localhost:8010/invoices',
         method: 'post',
         headers: {
-          Authorization: 'Basic ' + new Buffer(config.cluster + ':' + config.cluster).toString('base64')
+          Authorization: 'Basic ' + Buffer.from(config.cluster + ':' + config.cluster).toString('base64')
         },
         json: {
           invoiceUrl: 'http://localhost:8010/invoices/' + req.payload.invoiceId,
@@ -459,7 +469,7 @@ server.route([
         url: 'http://localhost:8010/quotes',
         method: 'post',
         headers: {
-          Authorization: 'Basic ' + new Buffer(config.cluster + ':' + config.cluster).toString('base64')
+          Authorization: 'Basic ' + Buffer.from(config.cluster + ':' + config.cluster).toString('base64')
         },
         json: req.payload
       }, function (error, message, response) {
@@ -527,16 +537,16 @@ module.exports = new Promise(function (resolve, reject) {
     }
   })
 })
-.then(() => {
-  return {
-    stop: function () {
-      return Promise.resolve(server.stop())
-        .then(() => {
-          return sidecarServer
-        })
-        .then((methods) => {
-          return methods.stop()
-        })
+  .then(() => {
+    return {
+      stop: function () {
+        return Promise.resolve(server.stop())
+          .then(() => {
+            return sidecarServer
+          })
+          .then((methods) => {
+            return methods.stop()
+          })
+      }
     }
-  }
-})
+  })
